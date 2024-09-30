@@ -80,17 +80,17 @@ def create_animation(ddplot, dm, nouts=40, niter=200, epsilon=0.2, \
 		ddplot.Iwarp = ddplot.I1.copy()
 
 	def update_ddplot(num):
-		if num is not 0:
+		if num != 0:
 			k = num-1
 			nit = anim_slice[k]
 			dm.run(nit, epsilon=epsilon, **kwarg)
 			if hasattr(ddplot,'vert_lines'):
-				if warp_type is 'inverse':
+				if warp_type == 'inverse':
 					ddplot.update_warp(dm.phiinvx, dm.phiinvy)
 				else:
 					ddplot.update_warp(dm.phix, dm.phiy)
 			if hasattr(ddplot,'dens'):
-				if warp_type is 'inverse':
+				if warp_type == 'inverse':
 					dm.image_compose(ddplot.I1, dm.phix, dm.phiy, ddplot.Iwarp)
 				else:
 					dm.image_compose(ddplot.I1, dm.phiinvx, dm.phiinvy, ddplot.Iwarp)
